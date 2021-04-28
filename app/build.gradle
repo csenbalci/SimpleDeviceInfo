@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.gbyte.simpledeviceinfo"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        preProd {
+            dimension "version"
+            applicationIdSuffix ".test"
+            resValue "string", "app_name", "(D)Simple Device Info"
+        }
+
+        prod {
+            dimension "version"
+            resValue "string", "app_name", "Simple Device Info"
+        }
+    }
+
+    buildTypes {
+        debug{
+            debuggable true
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def appId = variant.applicationId
+            def versionName = variant.versionName
+            def versionCode = variant.versionCode
+            def flavorName = variant.flavorName
+            def buildType = variant.buildType.name
+            def variantName = variant.name
+
+            outputFileName = "${appId}_${versionName}(${versionCode}).apk"
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${rootProject.ext.kotlinVersion}"
+    implementation "androidx.core:core-ktx:${rootProject.ext.coreKtxVersion}"
+    implementation "androidx.appcompat:appcompat:${rootProject.ext.appCompatVersion}"
+    implementation "com.google.android.material:material:${rootProject.ext.materialVersion}"
+    implementation "com.hendraanggrian.material:collapsingtoolbarlayout-subtitle:${rootProject.ext.collapsingToolbarSubtitleVersion}"
+
+    testImplementation "junit:junit:${rootProject.ext.jUnitVersion}"
+    androidTestImplementation "androidx.test.ext:junit:${rootProject.ext.androidJUnitVersion}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${rootProject.ext.androidEspressoCoreVersion}"
+}
