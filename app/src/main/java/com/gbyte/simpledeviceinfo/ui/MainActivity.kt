@@ -9,18 +9,21 @@ import android.view.MenuItem
 import com.gbyte.simpledeviceinfo.R
 import com.gbyte.simpledeviceinfo.core.CoreDeviceInfo
 import com.google.android.material.appbar.SubtitleCollapsingToolbarLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        //setSupportActionBar(findViewById(R.id.toolbar))
         setCollapsingToolbar(findViewById(R.id.toolbar_layout))
+
+        findViewById<BottomNavigationView>(R.id.bottomNavigationView).menu.getItem(2).isEnabled = false
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                    .setAction("Action", null).setAnchorView(view).show()
         }
     }
 

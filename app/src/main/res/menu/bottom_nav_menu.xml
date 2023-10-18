@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main"
+        android:icon="@drawable/nav_main_icon"
+        android:title="Main Info" />
+
+    <item
+        android:id="@+id/software"
+        android:icon="@drawable/nav_software_icon"
+        android:title="Software" />
+
+    <item
+        android:id="@+id/placeholder"
+        android:title="" />
+
+    <item
+        android:id="@+id/hardware"
+        android:icon="@drawable/nav_hardware_info"
+        android:title="Hardware" />
+
+    <item
+        android:id="@+id/other"
+        android:icon="@drawable/nav_other_icon"
+        android:title="Other Info" />
+</menu>
